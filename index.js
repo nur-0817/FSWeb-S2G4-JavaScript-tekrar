@@ -50,8 +50,8 @@ function KareninAlani(kenaruzunlugu) {
 	4. Hesaplanan çemberin çevresi döndürülecektir.
 */
 
-function CemberinCevresi(/* kodlar buraya */) {
-  /* kodlar buraya */
+function CemberinCevresi(yaricap) {
+  return 2 * pi * yaricap;
 }
 
 /* (Oto test yok) Yukarıdaki CemberinCevresi fonksiyonunu yarıçap = 5 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
@@ -64,9 +64,10 @@ function CemberinCevresi(/* kodlar buraya */) {
 	4. Hesaplanan çemberin alanı döndürülecektir.
 */
 
-function CemberinAlani(/* kodlar buraya */) {
-  /* kodlar buraya */
+function CemberinAlani(yaricap, piDegeri) {
+  return piDegeri * Math.pow(yaricap, 2);
 }
+
 
 /* (Oto test yok) Yukarıdaki CemberinAlani fonksiyonunu yarıçap = 15 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
 
@@ -89,37 +90,59 @@ function CemberinAlani(/* kodlar buraya */) {
 
 /*  (oto test yok) sayilar dizisi içinde kaç adet sayı olduğunu konsola yazdırın */
 
-let ucetambolunenler,
-  enkucuk,
-  enbuyuk,
-  ucebolunenlerintoplami,
-  besyuzdenkucuksayilar,
-  siralisayilar,
-  tekraredensayilar;
+console.log("sayilar uzunluğu =", sayilar.length);
+
+let ucetambolunenler = [];
+let enkucuk;
+let enbuyuk;
+let ucebolunenlerintoplami;
+let besyuzdenkucuksayilar;
+let siralisayilar;
+let tekraredensayilar;
 
 // 3a çözümü
 
-/* kodlar buraya */
-
+enbuyuk = sayilar[0];
+enkucuk = sayilar[0];
+for (let i = 1; i < sayilar.length; i++) {
+  const n = sayilar[i];
+  if (n > enbuyuk) enbuyuk = n;
+  if (n < enkucuk) enkucuk = n;
+}
 // 3b çözümü:
 
-/* kodlar buraya */
+sayilar.forEach((sayi) => {
+  if (sayi % 3 === 0) {
+    ucetambolunenler.push(sayi);
+  }
+});
 
 // 3c çözümü:
 
-/* kodlar buraya */
-
+ucebolunenlerintoplami = ucetambolunenler.reduce((top, n) => top + n, 0);
 // 3d çözümü
 
-/* kodlar buraya */
+besyuzdenkucuksayilar = sayilar.filter((n) => n < 500);
+
 
 // 3e çözümü
 
-/* kodlar buraya */
+siralisayilar = [...besyuzdenkucuksayilar].sort((a, b) => a - b);
 
 // 3f çözümü
 
-/* kodlar buraya */
+(function () {
+  const sayac = Object.create(null);
+  for (const n of sayilar) {
+    const k = String(n);
+    sayac[k] = (sayac[k] || 0) + 1;
+  }
+  tekraredensayilar = Object.entries(sayac)
+    .filter(([, adet]) => adet > 1)
+    .sort((a, b) => Number(a[0]) - Number(b[0]))
+    .map(([deger, adet]) => `${deger} sayısı ${adet} kere tekrar edilmiştir`);
+})();
+
 
 /*  Bu satırın aşağısındaki kodları lütfen değiştirmeyin  */
 
